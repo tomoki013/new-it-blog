@@ -12,10 +12,13 @@ export function ProgressBar() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-50"
+      className="fixed top-0 left-0 right-0 h-2 bg-primary origin-left z-50"
       style={{
         scaleX,
-        boxShadow: "0 0 10px oklch(var(--primary))",
+        boxShadow: `0 0 5px oklch(var(--primary)),
+                    0 0 10px oklch(var(--primary)),
+                    0 0 20px oklch(var(--primary)),
+                    0 0 30px oklch(var(--primary-foreground))`
       }}
     />
   );
