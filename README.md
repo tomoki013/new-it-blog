@@ -1,42 +1,39 @@
 # Cyberpunk Tech Blog
 
-This is a personal IT blog that serves as both a technical memorandum and a portfolio. The project is built with Next.js, TypeScript, and Tailwind CSS, and features a unique cyberpunk design with a strong emphasis on animations and a dynamic user experience.
+これは、筆者の技術備忘録とポートフォリオを兼ねた個人用 IT ブログです。Next.js, TypeScript, Tailwind CSS で構築されており、サイバーパンクをテーマにした独自のデザインと、アニメーションを駆使した動的なユーザー体験を特徴としています。
 
-## Features
+## ✨ 特徴
 
-*   **Cyberpunk Aesthetic:** The UI is designed with a dark theme and neon colors to create a futuristic, cyberpunk-inspired look.
-*   **Dynamic Animations:** The blog utilizes Framer Motion to create smooth and engaging animations for navigation, article cards, and other interactive elements.
-*   **Custom Theme Toggle:** The theme toggle allows users to switch between a "cyberpunk" dark mode and a "light" mode, with unique icons to match the blog's aesthetic.
-*   **Markdown-Based Content:** Blog posts are managed as Markdown/MDX files, making it easy to create and edit content.
-*   **Responsive Design:** The layout is fully responsive and optimized for a seamless experience across all devices.
+- **サイバーパンクな世界観**: UI はダークテーマを基調とし、ネオンカラーをアクセントに加えることで、未来的でサイバーパンクな雰囲気を演出しています。
+- **心地よいアニメーション**: Framer Motion を活用し、ナビゲーションや記事カードなど、あらゆるインタラクティブ要素に滑らかで魅力的なアニメーションを導入しています。
+- **カスタムテーマ切り替え**: ブログの世界観に合わせた独自のアイコンを持つテーマ切り替え機能により、「サイバーパンク」なダークモードと「テック」なライトモードを瞬時に変更できます。
+- **Markdown ベースのコンテンツ管理**: 記事は Markdown/MDX 形式で管理されており、`velite` によって静的生成されるため、高速な表示と簡単なコンテンツ編集を両立しています。
+- **レスポンシブデザイン**: レイアウトは完全レスポンシブ対応で、あらゆるデバイスで最適な体験を提供します。
 
-## Tech Stack
+## 🛠️ 技術スタック
 
-*   **Next.js:** A React framework for building server-rendered and statically generated web applications.
-*   **TypeScript:** A typed superset of JavaScript that enhances code quality and maintainability.
-*   **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
-*   **Framer Motion:** A production-ready motion library for React.
-*   **Velite:** A tool for managing and processing Markdown/MDX content.
-*   **next-themes:** A library for managing themes in Next.js applications.
+- **Next.js**: サーバーサイドレンダリングと静的サイト生成に対応した React フレームワーク。
+- **TypeScript**: コードの品質と保守性を高める、静的型付けが可能な JavaScript のスーパーセット。
+- **Tailwind CSS**: ユーティリティファーストな CSS フレームワーク。v4 を採用し、`@theme` による効率的なスタイリングを実現。
+- **Framer Motion**: React 向けのプロダクションレディなモーションライブラリ。
+- **Velite**: Markdown/MDX コンテンツを型安全に管理・処理するためのツール。
+- **next-themes**: Next.js アプリケーションのテーマ管理を容易にするライブラリ。
 
-## Getting Started
+## 🚀 セットアップ
 
-To get a local copy up and running, follow these simple steps:
+ローカル環境でプロジェクトを立ち上げるには、以下の手順に従ってください。
 
-1.  **Clone the repository:**
+1.  **リポジトリをクローン:**
     ```sh
     git clone https://github.com/your-username/your-repo-name.git
     ```
-2.  **Install dependencies:**
+2.  **依存関係をインストール:**
     ```sh
     npm install
     ```
-3.  **Run the development server:**
+3.  **開発サーバーを起動:**
     ```sh
     npm run dev
     ```
-4.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4.  ブラウザで [http://localhost:3000](http://localhost:3000) を開き、動作を確認してください。
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

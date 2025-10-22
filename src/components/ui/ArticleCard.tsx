@@ -18,7 +18,7 @@ const cardVariants: Variants = {
     borderColor: "oklch(var(--border))",
   },
   hover: {
-    scale: 1.03,
+    scale: 1.015,
     y: -8,
     boxShadow: "0 0 30px oklch(var(--primary) / 0.7)",
     borderColor: "oklch(var(--primary))",
