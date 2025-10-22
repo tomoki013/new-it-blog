@@ -31,9 +31,19 @@ const cardVariants: Variants = {
 };
 
 const glowVariants: Variants = {
-  rest: { opacity: 0 },
+  rest: {
+    opacity: 0.7,
+    scale: 1,
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "mirror",
+    },
+  },
   hover: {
     opacity: 1,
+    scale: 1.05,
     transition: {
       duration: 0.5,
       ease: "easeOut",

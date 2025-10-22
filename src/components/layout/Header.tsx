@@ -32,13 +32,33 @@ export function Header() {
         {/* 2. PC用ナビゲーション（中央） */}
         <div className="hidden md:flex md:items-center md:gap-x-6">
           {navItems.map((item) => (
-            <Link
+            <motion.div
               key={item.name}
-              href={item.href}
-              className="text-sm font-medium transition-colors text-muted-foreground hover:text-primary dark:hover:text-glow-primary"
+              className="relative"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
             >
-              {item.name}
-            </Link>
+              <Link
+                href={item.href}
+                className="relative z-10 block px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:text-primary dark:hover:text-glow-primary"
+              >
+                {item.name}
+              </Link>
+              <motion.div
+                variants={{
+                  rest: { scale: 0, opacity: 0 },
+                  hover: { scale: 1, opacity: 1 },
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 350,
+                  damping: 20,
+                }}
+                className="absolute inset-0 z-0 border-2 border-primary bg-primary/10 dark:shadow-glow-primary"
+                style={{ borderRadius: "8px" }}
+              />
+            </motion.div>
           ))}
         </div>
 

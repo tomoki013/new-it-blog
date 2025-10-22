@@ -1,7 +1,9 @@
 "use client";
 
+"use client";
+
 import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
+import { CircuitBoard, Sparkles } from "lucide-react";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -16,9 +18,9 @@ export function ThemeToggle() {
        * 明示的に 'dark' かどうかでアイコンを出し分けます。
        */}
       {theme === "dark" ? (
-        <Sun size={20} aria-label="ライトモードにする" />
+        <Sparkles size={20} aria-label="ライトモードにする" />
       ) : (
-        <Moon size={20} aria-label="ダークモードにする" />
+        <CircuitBoard size={20} aria-label="ダークモードにする" />
       )}
     </button>
   );
