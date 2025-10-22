@@ -5,6 +5,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MainContainer } from "@/components/layout/MainContainer";
+import { ProgressBar } from "@/components/ui/ProgressBar";
 
 // 2. フォントを設定 (Inter は削除)
 const techMono = Share_Tech_Mono({
@@ -32,9 +34,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ProgressBar />
           <div className="flex flex-col min-h-screen scanlines-overlay noise-overlay">
             <Header />
-            <main className="flex-1 text-sm md:text-base">{children}</main>
+            <main className="flex-1 text-sm md:text-base">
+              <MainContainer>{children}</MainContainer>
+            </main>
             <Footer />
           </div>
         </ThemeProvider>
