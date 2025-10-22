@@ -1,0 +1,30 @@
+---
+title: "Tailwind CSS v4: 設定ファイル不要の世界"
+date: "2025-10-22T14:30:00.000Z"
+description: "tailwind.config.ts はもう不要です。Tailwind v4 がどのようにしてCSSの未来を変えるのかを探ります。"
+category: "CSS"
+tags: ["TailwindCSS", "CSS", "Design"]
+---
+
+## Tailwind CSS v4 の衝撃
+
+`tailwind.config.ts` が不要になったことは、単なる利便性の向上ではありません。
+これは **Tailwind CSS v4** のアーキテクチャが根本的に変わったことを意味します。
+
+### `@theme` ルール
+
+すべての設定は `global.css` に集約されます。
+
+```css
+@import "tailwindcss";
+
+@theme {
+  darkmode: "class"; /* ここで設定 */
+
+  colors: {
+    primary: "oklch(var(--primary))";
+  }
+}
+```
+
+このアプローチにより、設定とスタイルが一元管理され、より直感的な開発が可能になりました。

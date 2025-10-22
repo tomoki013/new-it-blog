@@ -1,10 +1,375 @@
-@import "tailwindcss";
+/*
+ * ===================================================================
+ * GEMINI.md ルール (サイバーパンク強化版)
+ * ===================================================================
+ */
 
+/* 1. インポート */
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+/* 2. カスタムバリアント */
+@custom-variant dark (&:is(.dark *));
+
+/* 4. CSS変数 (サイバーパンク強化版) */
+@theme inline {
+  /* ... (基本定義) ... */
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* ... (グロー & グリッチ) ... */
+  --text-glow-primary: 0 0 5px oklch(var(--color-primary) / 0.8),
+    0 0 10px oklch(var(--color-primary) / 0.6);
+  --text-glow-secondary: 0 0 5px oklch(var(--color-secondary) / 0.8),
+    0 0 10px oklch(var(--color-secondary) / 0.6);
+  --box-glow-primary: 0 0 8px oklch(var(--color-primary) / 0.7),
+    0 0 15px oklch(var(--color-primary) / 0.5);
+  --box-glow-secondary: 0 0 8px oklch(var(--color-secondary) / 0.7),
+    0 0 15px oklch(var(--color-secondary) / 0.5);
+}
+
+/* 5. アニメーションキーフレーム (やりすぎ版) */
+@keyframes neon-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow: var(--text-glow-primary);
+    box-shadow: var(--box-glow-primary);
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: none;
+    box-shadow: none;
+  }
+}
+@keyframes glitch-translate {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-3px, -2px);
+  }
+  40% {
+    transform: translate(2px, 3px);
+  }
+  60% {
+    transform: translate(-4px, 1px);
+  }
+  80% {
+    transform: translate(1px, -3px);
+  }
+}
+@keyframes glitch-skew {
+  0%,
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: skewX(0deg);
+  }
+  5% {
+    clip-path: inset(10% 0 85% 0);
+    transform: skewX(-1deg);
+  }
+  10% {
+    clip-path: inset(90% 0 5% 0);
+    transform: skewX(2deg);
+  }
+  15% {
+    clip-path: inset(40% 0 30% 0);
+    transform: skewX(-3deg);
+  }
+  20% {
+    clip-path: inset(0 0 0 0);
+    transform: skewX(0deg);
+  }
+}
+@keyframes card-glitch {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+  }
+  10% {
+    opacity: 0.15;
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    opacity: 0.1;
+    clip-path: inset(90% 0 5% 0);
+    transform: translate(2px, 2px);
+  }
+  30% {
+    opacity: 0.2;
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(-1px, 3px);
+  }
+  40% {
+    opacity: 0.1;
+    clip-path: inset(0 0 0 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 4px;
+  }
+}
+@keyframes noise-anim {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  20% {
+    transform: translate(-10%, 5%);
+  }
+  30% {
+    transform: translate(5%, -10%);
+  }
+  40% {
+    transform: translate(-5%, 15%);
+  }
+  50% {
+    transform: translate(-10%, 5%);
+  }
+  60% {
+    transform: translate(15%, 0);
+  }
+  70% {
+    transform: translate(0, 10%);
+  }
+  80% {
+    transform: translate(-15%, 0);
+  }
+  90% {
+    transform: translate(10%, 5%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 6. カスタムユーティリティクラス */
+@layer utilities {
+  .text-glow-primary {
+    text-shadow: var(--text-glow-primary);
+  }
+  .text-glow-secondary {
+    text-shadow: var(--text-glow-secondary);
+  }
+  .shadow-glow-primary {
+    box-shadow: var(--box-glow-primary);
+  }
+  .shadow-glow-secondary {
+    box-shadow: var(--box-glow-secondary);
+  }
+  .animate-neon-pulse {
+    animation: neon-pulse 1.8s infinite alternate;
+  }
+  .animate-glitch-translate {
+    animation: glitch-translate 0.6s infinite steps(1);
+  }
+  .animate-glitch-skew {
+    animation: glitch-skew 0.7s infinite steps(1);
+  }
+  .animate-card-glitch {
+    animation: card-glitch 0.8s infinite alternate;
+  }
+  .animate-noise {
+    animation: noise-anim 0.8s steps(1) infinite;
+  }
+
+  /* ロゴ用エフェクト */
+  .logo-glitch-effect {
+    animation: glitch-translate 0.3s infinite steps(1) alternate,
+      glitch-skew 0.4s infinite steps(1) alternate;
+    text-shadow: var(--text-glow-primary);
+  }
+
+  /* ボタン用グロー */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid oklch(var(--color-primary) / 0.7);
+    transition: all 0.3s ease;
+  }
+  .btn-glow::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      oklch(var(--color-primary) / 0.05) 0deg,
+      oklch(var(--color-primary) / 0.8) 90deg,
+      oklch(var(--color-secondary) / 0.8) 180deg,
+      oklch(var(--color-primary) / 0.8) 270deg,
+      oklch(var(--color-primary) / 0.05) 360deg
+    );
+    animation: spin 6s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0; /* (Tailwind v4ではz-index: autoがデフォルトのため0指定) */
+  }
+  .btn-glow:hover {
+    border-color: oklch(var(--color-secondary));
+    box-shadow: var(--box-glow-primary);
+  }
+  .btn-glow:hover::before {
+    opacity: 1;
+  }
+  /* ボタン内の要素が ::before より手前に来るように */
+  .btn-glow > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 走査線オーバーレイ */
+  .scanlines-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+  .scanlines-overlay::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+      oklch(var(--color-primary) / 0.08) 50%,
+      rgba(0, 0, 0, 0) 50%
+    );
+    background-size: 100% 4px;
+    animation: scanlines 0.15s linear infinite;
+    opacity: 0.8;
+    z-index: 100;
+  }
+
+  /* ノイズオーバーレイ */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::after {
+    content: "";
+    position: fixed;
+    top: -200%;
+    left: -200%;
+    width: 400%;
+    height: 400%;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWAAAATpUt4AVAAAAJ0Uk5TAwQFBgcICQoLDQ4PEBESFBUVGBYYGhscHR4fICEiJicpKSs7ZJ6IAAAAJklEQVR42u3XQQ0AAAgCQe7/abH5K24Q+Nqg5iCAAAACAAAA/gN3fW5m9AAAAABJRU5ErkJggg==");
+    background-repeat: repeat;
+    animation: noise-anim 0.8s steps(1) infinite;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 99;
+  }
+}
+
+/* 7. ライトモード */
+:root {
+  --radius: 0.25rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.1 0.01 260);
+  --primary: oklch(0.5 0.2 190);
+  --secondary: oklch(0.5 0.2 320);
+  /* ... (他の変数は @theme inline から参照) ... */
+}
+
+/* 8. ダークモード (やりすぎ版) */
+.dark {
+  --radius: 0.25rem;
+  --background: oklch(0.05 0.01 260); /* 深い黒 */
+  --foreground: oklch(0.98 0.01 260);
+  --primary: oklch(0.85 0.3 200); /* 強烈なシアン */
+  --secondary: oklch(0.75 0.3 330); /* 強烈なマゼンタ */
+  --card: oklch(0.1 0.01 260);
+  --border: oklch(0.2 0.02 260);
+  --input: oklch(0.2 0.02 260);
+  --muted: oklch(0.15 0.01 260);
+  --muted-foreground: oklch(0.7 0.01 260);
+
+  /* グロー (ダークモード) */
+  --text-glow-primary: 0 0 10px oklch(var(--color-primary) / 1),
+    0 0 20px oklch(var(--color-primary) / 0.9),
+    0 0 30px oklch(var(--color-primary) / 0.7);
+  --text-glow-secondary: 0 0 10px oklch(var(--color-secondary) / 1),
+    0 0 20px oklch(var(--color-secondary) / 0.9),
+    0 0 30px oklch(var(--color-secondary) / 0.7);
+  --box-glow-primary: 0 0 12px oklch(var(--color-primary) / 0.9),
+    0 0 25px oklch(var(--color-primary) / 0.7),
+    0 0 40px oklch(var(--color-primary) / 0.5);
+  --box-glow-secondary: 0 0 12px oklch(var(--color-secondary) / 0.9),
+    0 0 25px oklch(var(--color-secondary) / 0.7),
+    0 0 40px oklch(var(--color-secondary) / 0.5);
+}
+
+/* 9. カスタムスクロールバー */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--color-background) / 0.5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--color-primary) / 0.8);
+  border-radius: 4px;
+  border: 1px solid oklch(var(--color-primary) / 0.5);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--color-primary));
+  border-color: oklch(var(--color-secondary));
+}
+
+/* 10. 基本設定 */
 * {
   box-sizing: border-box;
   word-break: auto-phrase;
 }
-
 html {
   scroll-behavior: smooth;
 }
+/* `body` へのフォント適用は layout.tsx で行います */
