@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 // フッターリンク
 const footerLinks = [
@@ -23,13 +26,33 @@ export function Footer() {
         {/* 2. 規約系リンク */}
         <nav className="flex flex-wrap items-center justify-center gap-4 md:gap-x-6">
           {footerLinks.map((link) => (
-            <Link
+            <motion.div
               key={link.name}
-              href={link.href}
-              className="text-sm transition-colors text-muted-foreground hover:text-primary dark:hover:text-glow-primary"
+              className="relative"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
             >
-              {link.name}
-            </Link>
+              <Link
+                href={link.href}
+                className="relative z-10 block px-3 py-2 text-sm transition-colors text-muted-foreground hover:text-primary dark:hover:text-glow-primary"
+              >
+                {link.name}
+              </Link>
+              <motion.div
+                variants={{
+                  rest: { scale: 0, opacity: 0 },
+                  hover: { scale: 1, opacity: 1 },
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 350,
+                  damping: 20,
+                }}
+                className="absolute inset-0 z-0 border-2 border-primary bg-primary/10 dark:shadow-glow-primary"
+                style={{ borderRadius: "8px" }}
+              />
+            </motion.div>
           ))}
         </nav>
       </div>
