@@ -81,44 +81,56 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-0 left-0 z-101 w-full h-screen p-4 bg-background md:hidden border-b border-primary dark:border-primary dark:shadow-glow-primary"
+            initial={{ opacity: 0, y: "-100vh", filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: "-100vh", filter: "blur(10px)" }}
+            transition={{ duration: 0.5, type: "spring", stiffness: 50, damping: 15 }}
+            className="absolute top-0 left-0 z-101 w-full h-screen p-4 bg-background/80 backdrop-blur-xl md:hidden border-b-2 border-primary shadow-glow-primary"
           >
             <div className="flex items-center justify-between h-16">
-              {/* モバイルメニュー内のロゴ */}
               <Logo onClick={() => setIsMobileMenuOpen(false)} />
-
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 transition-colors hover:text-primary dark:hover:text-glow-primary btn-glow overflow-hidden"
                 aria-label="メニューを閉じる"
               >
                 <span className="relative z-10">
-                  <X size={20} />
+                  <X size={20} className="glitch-effect" data-text="X" />
                 </span>
               </button>
             </div>
-
-            <div className="flex flex-col items-center justify-center gap-y-8 mt-16">
-              {navItems.map((item) => (
-                <Link
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="flex flex-col items-center justify-center gap-y-8 mt-16"
+            >
+              {navItems.map((item, index) => (
+                <motion.div
                   key={item.name}
-                  href={item.href}
-                  className="text-4xl font-medium transition-colors hover:text-primary dark:hover:text-glow-primary" // text-4xl に
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
                 >
-                  {item.name}
-                </Link>
+                  <Link
+                    href={item.href}
+                    className="text-4xl font-bold tracking-widest transition-colors hover:text-primary dark:hover:text-glow-primary glitch-effect"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-text={item.name}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
-
-              {/* モバイルメニュー内のダークモード切替 */}
-              <div className="mt-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="mt-8"
+              >
                 <ThemeToggle />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

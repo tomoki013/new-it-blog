@@ -42,11 +42,12 @@ const SitemapPage = () => {
           <h2 className="text-2xl font-bold mb-6 text-glow-secondary border-b-2 border-primary/50 pb-2">
             All Posts
           </h2>
-          <ul className="space-y-3 columns-1 md:columns-2">
-            {allPosts.map(({ slug, title }) => (
-              <li key={slug}>
-                <Link href={`/blog/${slug}`} className="text-lg text-foreground hover:text-primary link-hover-effect">
-                  {title}
+          <ul className="space-y-4">
+            {allPosts.map(({ slug, title, date }) => (
+              <li key={slug} className="border-b border-border/30 pb-2">
+                <Link href={`/blog/${slug}`} className="flex justify-between items-center text-lg text-foreground hover:text-primary transition-colors duration-300 group">
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">{title}</span>
+                  <span className="text-sm text-muted-foreground font-mono">{date}</span>
                 </Link>
               </li>
             ))}
