@@ -31,6 +31,17 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 z-50 w-full backdrop-blur-md border-b-2 border-border dark:border-primary transition-colors duration-300 ${
@@ -103,33 +114,33 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex flex-col items-center justify-center gap-y-8 mt-16"
+              className="mt-8 flex flex-col"
             >
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
                 >
                   <Link
                     href={item.href}
-                    className="text-4xl font-bold tracking-widest transition-colors hover:text-primary dark:hover:text-glow-primary glitch-effect"
+                    className="flex items-center gap-x-4 px-4 py-4 text-2xl font-semibold transition-colors hover:bg-primary/10 rounded-lg"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    data-text={item.name}
                   >
-                    {item.name}
+                    <span>{item.name}</span>
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                className="mt-8"
-              >
-                <ThemeToggle />
-              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              className="absolute bottom-10 left-1/2 -translate-x-1/2"
+            >
+              <ThemeToggle />
             </motion.div>
           </motion.div>
         )}
