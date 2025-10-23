@@ -47,7 +47,7 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="px-3 py-2 text-sm font-medium rounded-md text-muted-foreground btn-glow"
+              className="px-3 py-2 text-sm font-medium rounded-md text-muted-foreground btn-glow overflow-hidden"
             >
               <span className="relative z-10">{item.name}</span>
             </Link>
@@ -67,7 +67,7 @@ export function Header() {
           {/* 3c. ハンバーガー (btn-glow) */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 md:hidden transition-colors hover:text-primary dark:hover:text-glow-primary btn-glow"
+            className="p-2 md:hidden transition-colors hover:text-primary dark:hover:text-glow-primary btn-glow overflow-hidden"
             aria-label="メニューを開く"
           >
             <span className="relative z-10">
@@ -93,7 +93,7 @@ export function Header() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 transition-colors hover:text-primary dark:hover:text-glow-primary btn-glow"
+                className="p-2 transition-colors hover:text-primary dark:hover:text-glow-primary btn-glow overflow-hidden"
                 aria-label="メニューを閉じる"
               >
                 <span className="relative z-10">
@@ -125,18 +125,3 @@ export function Header() {
     </header>
   );
 }
-
-// DarkModeToggle で useTheme を使うため、ファイル全体を "use client" に
-// する必要がありますが、Headerコンポーネント自体は "use client" を
-// 必要としない部分が多いため、useTheme を使うコンポーネントを
-// 外部ファイル (dark-mode-toggle.tsx) に分離するのがベストプラクティスです。
-//
-// 今回は `test.html` からの移植と btn-glow の適用のために
-// DarkModeToggle を Header.tsx 内に再定義しましたが、
-// `use client` を Header.tsx の先頭に追加する必要があります。
-// （...と、思いましたが `SearchButton` も `use client` (useState) が
-// 必要になるため、 `Header.tsx` が `use client` であるのは妥当です）
-//
-// 追記: DarkModeToggle がマウントされていないと
-// "system" テーマの判定ができないため、useState/useEffect を使って
-// マウント状態を管理するロジックを追加しました。

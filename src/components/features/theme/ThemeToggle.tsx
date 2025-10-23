@@ -11,7 +11,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 transition-colors hover:text-primary"
+      className="p-2 transition-colors hover:text-primary btn-glow overflow-hidden"
       aria-label="テーマを切り替える"
     >
       {/* * next-themes はマウントされるまで theme が undefined になる可能性があるため、

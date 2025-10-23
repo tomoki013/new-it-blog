@@ -14,14 +14,14 @@ const cardVariants: Variants = {
   rest: {
     scale: 1,
     y: 0,
-    boxShadow: "0px 0px 0px oklch(var(--primary) / 0)",
-    borderColor: "oklch(var(--border))",
+    boxShadow: "0px 0px 0px var(--primary)",
+    borderColor: "var(--border)",
   },
   hover: {
     scale: 1.015,
     y: -8,
-    boxShadow: "0 0 30px oklch(var(--primary) / 0.7)",
-    borderColor: "oklch(var(--primary))",
+    boxShadow: "0 0 30px var(--primary)",
+    borderColor: "var(--primary)",
     transition: {
       type: "spring",
       stiffness: 350,
@@ -52,10 +52,10 @@ const glowVariants: Variants = {
 };
 
 const titleVariants: Variants = {
-  rest: { color: "oklch(var(--foreground))" },
+  rest: { color: "var(--foreground)" },
   hover: {
-    color: "oklch(var(--primary))",
-    textShadow: "0 0 12px oklch(var(--primary) / 0.8)",
+    color: "var(--primary)",
+    textShadow: "0 0 12px var(--primary) / 0.8)",
     transition: { duration: 0.3, ease: "easeOut" },
   },
 };
@@ -117,8 +117,11 @@ export function ArticleCard({ post }: ArticleCardProps) {
       />
 
       {/* 2. コンテンツラッパー */}
-      <div className="relative z-10 flex h-full flex-col border border-border bg-card p-5">
-        <div className="relative z-10 flex flex-grow flex-col">
+      <Link
+        href={`/blog/${post.slug}`}
+        className="relative z-10 flex h-full flex-col border border-border bg-card p-5"
+      >
+        <div className="relative z-10 flex flex-col">
           {/* 日付とカテゴリ */}
           <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-1.5">
@@ -142,14 +145,12 @@ export function ArticleCard({ post }: ArticleCardProps) {
             variants={titleVariants}
             className="relative mb-3 text-3xl font-bold"
           >
-            <Link href={`/blog/${post.slug}`} className="block">
-              {post.title}
-            </Link>
+            {post.title}
           </motion.h2>
 
           {/* 概要 */}
           {post.description && (
-            <p className="mb-4 flex-grow text-sm text-muted-foreground line-clamp-3">
+            <p className="mb-4 text-sm text-muted-foreground line-clamp-3">
               {post.description}
             </p>
           )}
@@ -169,22 +170,16 @@ export function ArticleCard({ post }: ArticleCardProps) {
           )}
 
           {/* 続きを読む */}
-          <motion.div
-            variants={readMoreVariants}
-            className="mt-auto"
-          >
-            <Link
-              href={`/blog/${post.slug}`}
-              className="inline-flex items-center gap-1 text-base font-semibold text-primary dark:text-glow-primary"
-            >
+          <motion.div variants={readMoreVariants} className="mt-auto">
+            <div className="inline-flex items-center gap-1 text-base font-semibold text-primary dark:text-glow-primary">
               Read More // ACCESS
               <motion.div variants={arrowVariants}>
                 <ArrowRight size={18} />
               </motion.div>
-            </Link>
+            </div>
           </motion.div>
         </div>
-      </div>
+      </Link>
     </motion.article>
   );
 }

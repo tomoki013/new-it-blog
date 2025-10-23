@@ -9,7 +9,6 @@ export function Logo({ onClick }: { onClick?: () => void }) {
         text-foreground 
         dark:text-primary 
         relative block w-fit
-        /* サイバーパンクアニメーション */
         dark:animate-neon-pulse
       "
       onClick={onClick}
