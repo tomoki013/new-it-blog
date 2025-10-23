@@ -284,7 +284,7 @@
     background: linear-gradient(var(--color-primary) 50%, rgba(0, 0, 0, 0) 50%);
     background-size: 100% 4px;
     animation: scanlines 0.15s linear infinite;
-    opacity: 0.8;
+    opacity: 0.05;
     z-index: 100;
   }
 

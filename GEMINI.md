@@ -17,7 +17,8 @@ Gemini に開発を依頼する際は、**必ずこのガイドラインを前�
 - **Next.js**: **v15** (App Router)
 - **React**: **v19** (Actions, `useFormState`, `use` の活用)
 - **Tailwind CSS**: **v4**
-- **コンテンツ管理**: **`velite`**
+- **コンテンツ管理**: **`fs` + `gray-matter`**
+- **MDX レンダリング**: **`next-mdx-remote`**
 - **テーマ管理**: **`next-themes`**
 - **アニメーション**: **`framer-motion`**
 
@@ -29,12 +30,13 @@ Gemini に開発を依頼する際は、**必ずこのガイドラインを前�
 - Tailwind v4 の規約に従い、`tailwind.config.ts` を**作成・参照するコードは禁止**します。
 - カスタムテーマ（色、フォントなど）や `darkMode: 'class'` の設定は、すべて **`src/app/global.css`** 内の `@theme` ルールで定義します。
 
-### 3-2. TypeScript と `velite`
+### 3-2. TypeScript とコンテンツ管理
 
 - **型安全性の徹底**: `any` 型の使用は原則禁止します。
-- **記事データ**: 記事データ（`posts`）や型（`Post`）は、必ず `velite` が自動生成した `.velite` からインポートします。
-  - `import { posts, type Post } from '.velite';`
-- **MDX**: コンポーネントは `.mdx` ファイルに直接インポートせず、`velite` の `body: s.mdx()` で処理された `body` をレンダリングします。（または MDX コンポーネントを渡す設計にします）
+- **記事データ取得**: 記事データの取得は、`src/lib/posts.ts` に実装された関数 (`getPostData`, `getAllPostSlugs` など) を介して行います。
+  - これらの関数は、`fs` でファイルシステムを操作し、`gray-matter` で Markdown/MDX の Frontmatter を解析します。
+- **MDX レンダリング**: 記事本文のレンダリングには `next-mdx-remote` を使用します。
+  - シンタックスハイライトには `rehype-pretty-code` と `shiki` を使用します。
 
 ### 3-3. ディレクトリ構造
 
