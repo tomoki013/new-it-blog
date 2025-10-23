@@ -8,7 +8,7 @@ type MainContainerProps = {
 
 export function MainContainer({ children }: MainContainerProps) {
   return (
-    <div className="relative w-full max-w-5xl mx-auto px-4 py-8">
+    <div className="relative w-full max-w-5xl mx-auto px-4 py-8 pt-16">
       <motion.div
         className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-primary"
         style={{ filter: "blur(16px)", zIndex: -1 }}

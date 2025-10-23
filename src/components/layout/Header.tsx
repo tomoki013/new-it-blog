@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "../ui/Logo";
@@ -21,9 +21,22 @@ const navItems = [
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-md border-b-2 border-border dark:border-primary">
+    <header
+      className={`fixed top-0 z-50 w-full backdrop-blur-md border-b-2 border-border dark:border-primary transition-colors duration-300 ${
+        isScrolled ? "bg-background/50" : "bg-background/90"
+      }`}
+    >
       <nav className="container flex items-center justify-between h-16 max-w-6xl px-4 mx-auto md:px-6">
         {/* 1. ロゴ（左側） */}
         <Logo />

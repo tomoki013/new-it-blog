@@ -262,6 +262,9 @@
     position: relative;
     z-index: 1;
   }
+  .btn-glow:hover > * {
+    animation: glitch-translate 0.2s infinite steps(1);
+  }
 
   /* 走査線オーバーレイ */
   .scanlines-overlay {
