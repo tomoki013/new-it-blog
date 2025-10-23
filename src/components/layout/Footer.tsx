@@ -29,9 +29,9 @@ export function Footer() {
             <Link
               key={link.name}
               href={link.href}
-              className="px-3 py-2 text-sm transition-colors text-muted-foreground hover:text-primary dark:hover:text-glow-primary"
+              className="px-3 py-2 text-sm rounded-md text-muted-foreground btn-glow"
             >
-              {link.name}
+              <span className="relative z-10">{link.name}</span>
             </Link>
           ))}
         </nav>
