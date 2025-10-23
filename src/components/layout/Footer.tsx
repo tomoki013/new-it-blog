@@ -6,8 +6,8 @@ import { Logo } from "../ui/Logo";
 // フッターリンク
 const footerLinks = [
   { name: "お問い合わせ // CONTACT", href: "/contact" },
-  { name: "プライバシーポリシー // PRIVACY", href: "/privacy" },
-  { name: "利用規約 // TERMS", href: "/terms" },
+  { name: "プライバシーポリシー // PRIVACY", href: "/privacy-policy" },
+  { name: "利用規約 // TERMS", href: "/terms-of-service" },
   { name: "サイトマップ // MAP", href: "/sitemap" },
 ];
 
