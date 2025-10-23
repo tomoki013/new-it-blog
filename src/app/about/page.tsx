@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Timeline } from '@/components/features/about/Timeline';
 
 const AboutPage = () => {
   return (
@@ -41,6 +42,8 @@ const AboutPage = () => {
           ))}
         </div>
       </section>
+
+      <Timeline />
     </div>
   );
 };
