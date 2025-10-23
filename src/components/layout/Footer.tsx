@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { Logo } from "../ui/Logo";
 
 // フッターリンク
 const footerLinks = [
@@ -18,9 +18,8 @@ export function Footer() {
     <footer className="w-full border-t-2 border-border bg-background dark:border-primary">
       <div className="container flex flex-col items-center justify-between max-w-6xl gap-4 px-4 py-8 mx-auto md:px-6 md:flex-row">
         {/* 1. コピーライト */}
-        <div className="text-sm text-muted-foreground dark:text-glow-secondary">
-          &copy; {currentYear} ともきちのエンジニア成長記. // ALL RIGHTS
-          RESERVED.
+        <div className="text-sm text-muted-foreground">
+          &copy; {currentYear} <Logo /> \\ ALL RIGHTS RESERVED.
         </div>
 
         {/* 2. 規約系リンク */}

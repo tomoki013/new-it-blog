@@ -15,7 +15,7 @@ const techMono = Share_Tech_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "あなたのITブログ名",
+  title: "ともきちのエンジニア成長記",
   description: "技術の備忘録とポートフォリオ",
 };
 

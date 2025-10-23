@@ -11,7 +11,7 @@ export function SearchButton() {
   return (
     <button
       onClick={openSearchModal}
-      className="p-2 transition-colors hover:text-primary"
+      className="p-2 transition-colors hover:text-primary btn-glow overflow-hidden"
       aria-label="検索"
     >
       <Search size={20} />
