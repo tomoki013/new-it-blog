@@ -34,9 +34,9 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:text-primary dark:hover:text-glow-primary"
+              className="px-3 py-2 text-sm font-medium rounded-md text-muted-foreground btn-glow"
             >
-              {item.name}
+              <span className="relative z-10">{item.name}</span>
             </Link>
           ))}
         </div>
