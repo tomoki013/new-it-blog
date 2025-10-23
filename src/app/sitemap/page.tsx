@@ -29,7 +29,7 @@ const SitemapPage = () => {
           <ul className="space-y-3">
             {staticPages.map((page) => (
               <li key={page.href}>
-                <Link href={page.href} className="text-lg text-foreground hover:text-primary hover:text-glow-primary transition-colors duration-300">
+                <Link href={page.href} className="text-lg text-foreground hover:text-primary link-hover-effect">
                   {page.name}
                 </Link>
               </li>
@@ -45,7 +45,7 @@ const SitemapPage = () => {
           <ul className="space-y-3 columns-1 md:columns-2">
             {allPosts.map(({ slug, title }) => (
               <li key={slug}>
-                <Link href={`/blog/${slug}`} className="text-lg text-foreground hover:text-primary hover:text-glow-primary transition-colors duration-300">
+                <Link href={`/blog/${slug}`} className="text-lg text-foreground hover:text-primary link-hover-effect">
                   {title}
                 </Link>
               </li>
