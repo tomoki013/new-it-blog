@@ -216,8 +216,8 @@
     animation: noise-anim 0.8s steps(1) infinite;
   }
 
-  /* ロゴ用エフェクト */
-  .logo-glitch-effect {
+  /* 汎用グリッチエフェクト */
+  .glitch-effect {
     animation: glitch-translate 0.3s infinite steps(1) alternate,
       glitch-skew 0.4s infinite steps(1) alternate;
     text-shadow: var(--text-glow-primary);
@@ -401,3 +401,86 @@ html {
   scroll-behavior: smooth;
 }
 /* `body` へのフォント適用は layout.tsx で行います */
+
+/* 11. rehype-pretty-code スタイル (synthwave-84 カスタム) */
+:root {
+  --shiki-color-text: #f8f8f2;
+  --shiki-color-background: #1e1e1e; /* よりダークに */
+  --shiki-token-constant: #ff79c6;
+  --shiki-token-string: #f1fa8c;
+  --shiki-token-comment: #6272a4;
+  --shiki-token-keyword: #ff79c6;
+  --shiki-token-parameter: #ffb86c;
+  --shiki-token-function: #50fa7b;
+  --shiki-token-string-expression: #f1fa8c;
+  --shiki-token-punctuation: #bd93f9;
+  --shiki-token-link: #8be9fd;
+}
+.dark {
+  --shiki-color-background: oklch(0.1 0.01 260);
+}
+
+@layer components {
+  /* 12. typography (prose) のスタイル上書き */
+  .prose {
+    /* ... (基本スタイル) ... */
+    --tw-prose-body: theme(colors.foreground / 80%);
+    --tw-prose-headings: theme(colors.primary);
+    --tw-prose-lead: theme(colors.foreground / 90%);
+    --tw-prose-links: theme(colors.secondary);
+    --tw-prose-bold: theme(colors.foreground);
+    --tw-prose-counters: theme(colors.muted.foreground);
+    --tw-prose-bullets: theme(colors.primary / 50%);
+    --tw-prose-hr: theme(colors.border);
+    --tw-prose-quotes: theme(colors.foreground);
+    --tw-prose-quote-borders: theme(colors.primary);
+    --tw-prose-captions: theme(colors.muted.foreground);
+    --tw-prose-code: theme(colors.secondary);
+    --tw-prose-pre-code: theme(colors.foreground);
+    --tw-prose-pre-bg: var(--shiki-color-background); /* shiki BG */
+    --tw-prose-th-borders: theme(colors.border);
+    --tw-prose-td-borders: theme(colors.border / 50%);
+
+    /* 見出しにグロー効果 */
+    h1,
+    h2,
+    h3,
+    h4 {
+      @apply text-glow-primary;
+    }
+
+    /* リンクにホバーエフェクト */
+    a {
+      @apply link-hover-effect;
+    }
+
+    /* コードブロックのスタイル */
+    pre {
+      @apply border-2 border-primary/30 rounded-lg shadow-glow-primary/[.50];
+      background-image: repeating-linear-gradient(
+        0deg,
+        oklch(var(--color-primary) / 0.1),
+        oklch(var(--color-primary) / 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      padding: 0 !important; /* rehype-pretty-code の padding をリセット */
+    }
+
+    pre > code {
+      @apply p-6 block; /* padding は code 側に適用 */
+      line-height: 1.8;
+    }
+
+    /* 行ハイライト */
+    .line--highlighted {
+      @apply bg-primary/20 block;
+      box-shadow: inset 3px 0 0 0 oklch(var(--color-primary));
+    }
+
+    /* 単語ハイライト */
+    .word--highlighted {
+      @apply bg-secondary/30 rounded-md p-1;
+    }
+  }
+}

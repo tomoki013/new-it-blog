@@ -39,7 +39,18 @@ export default async function PostPage(props: {
         [
           rehypePrettyCode,
           {
-            theme: "github-dark",
+            theme: "synthwave-84",
+            onVisitLine(node) {
+              if (node.children.length === 0) {
+                node.children = [{ type: "text", value: " " }];
+              }
+            },
+            onVisitHighlightedLine(node) {
+              node.properties.className.push("line--highlighted");
+            },
+            onVisitHighlightedWord(node) {
+              node.properties.className = ["word--highlighted"];
+            },
           },
         ],
       ],
