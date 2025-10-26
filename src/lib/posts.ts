@@ -137,11 +137,17 @@ export function getPostData(slug: string): (Post & { content: string }) | null {
 /**
  * すべての投稿データを日付順（降順）でソートして取得します。
  * トップページなどで使用します。
+ * @param options.tag タグで絞り込む場合のタグ名
+ * @param options.category カテゴリで絞り込む場合のカテゴリ名
  */
-export function getSortedPostsData(): Post[] {
+export function getSortedPostsData(options: {
+  tag?: string;
+  category?: string;
+} = {}): Post[] {
+  const { tag, category } = options;
   const targetDirs = getTargetDirectories(); // ["it-posts", "common"]
 
-  const allPostsData = targetDirs.flatMap((dir) => {
+  let allPostsData = targetDirs.flatMap((dir) => {
     const fullDir = path.join(postsDirectory, dir);
 
     // ディレクトリが存在しない場合は空配列を返す
@@ -185,6 +191,16 @@ export function getSortedPostsData(): Post[] {
 
     return postsInDir;
   });
+
+  // タグやカテゴリでフィルタリング
+  if (tag) {
+    allPostsData = allPostsData.filter(
+      (post) => post.tags && post.tags.includes(tag)
+    );
+  }
+  if (category) {
+    allPostsData = allPostsData.filter((post) => post.category === category);
+  }
 
   // 日付順（降順）でソート
   return allPostsData.sort((a, b) => {

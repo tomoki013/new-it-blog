@@ -37,7 +37,7 @@ export default function RootLayout({
           <ProgressBar />
           <div className="flex flex-col min-h-screen scanlines-overlay noise-overlay">
             <Header />
-            <main className="flex-1 text-sm md:text-base">
+            <main className="flex-1 text-sm md:text-base pt-16">
               <MainContainer>{children}</MainContainer>
             </main>
             <Footer />

@@ -71,9 +71,9 @@ const getCategoryStyle = (category: string) => {
 
 export const Timeline = () => {
   return (
-    <section className="mt-24">
+    <section className="mt-24 md:ml-6">
       <h2 className="text-3xl font-bold text-center mb-16 dark:text-glow-secondary animate-neon-pulse">JOURNEY</h2>
-      <div className="relative border-l-2 border-primary/50 ml-4 md:ml-0">
+      <div className="relative border-l-2 border-primary/50">
         {ITJourneys.map((item, index) => (
           <motion.div
             key={index}
