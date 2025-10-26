@@ -92,13 +92,27 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: "-100vh", filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: "-100vh", filter: "blur(10px)" }}
-            transition={{ duration: 0.5, type: "spring", stiffness: 50, damping: 15 }}
-            className="absolute top-0 left-0 z-101 w-full h-screen p-4 bg-background/80 backdrop-blur-xl md:hidden border-b-2 border-primary shadow-glow-primary"
+            // v1: グリッチ感を増したアニメーション
+            initial={{
+              opacity: 0,
+              clipPath: "inset(0% 100% 100% 0%)",
+            }}
+            animate={{
+              opacity: 1,
+              clipPath: "inset(0% 0% 0% 0%)",
+              transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
+            }}
+            exit={{
+              opacity: 0,
+              clipPath: "inset(100% 0% 0% 100%)",
+              transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] },
+            }}
+            className="fixed top-0 left-0 z-101 w-full h-screen p-4 bg-background/90 backdrop-blur-xl md:hidden border-b-2 border-primary shadow-glow-primary"
           >
-            <div className="flex items-center justify-between h-16">
+            {/* 走査線とノイズを追加 */}
+            <div className="absolute top-0 left-0 w-full h-full scanlines-overlay noise-overlay" />
+
+            <div className="relative z-10 flex items-center justify-between h-16">
               <Logo onClick={() => setIsMobileMenuOpen(false)} />
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -110,25 +124,58 @@ export function Header() {
                 </span>
               </button>
             </div>
+
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-8 flex flex-col"
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={{
+                initial: { opacity: 0 },
+                animate: {
+                  opacity: 1,
+                  transition: {
+                    delayChildren: 0.2,
+                    staggerChildren: 0.1,
+                  },
+                },
+                exit: {
+                  opacity: 0,
+                  transition: {
+                    staggerChildren: 0.05,
+                    staggerDirection: -1,
+                  },
+                },
+              }}
+              className="relative z-10 mt-8 flex flex-col"
             >
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
+                  variants={{
+                    initial: { opacity: 0, x: -30, filter: "blur(5px)" },
+                    animate: {
+                      opacity: 1,
+                      x: 0,
+                      filter: "blur(0px)",
+                      transition: { duration: 0.5, ease: "easeOut" },
+                    },
+                    exit: {
+                      opacity: 0,
+                      x: 30,
+                      filter: "blur(5px)",
+                      transition: { duration: 0.3, ease: "easeIn" },
+                    },
+                  }}
+                  className="border-b-2 border-dashed border-border/20 last:border-none"
                 >
                   <Link
                     href={item.href}
-                    className="flex items-center gap-x-4 px-4 py-4 text-2xl font-semibold transition-colors hover:bg-primary/10 rounded-lg"
+                    className="relative flex items-center gap-x-4 px-4 py-6 text-2xl font-semibold transition-colors hover:bg-primary/10 rounded-lg link-hover-effect"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <span>{item.name}</span>
+                    <span className="glitch-effect" data-text={item.name}>
+                      {item.name}
+                    </span>
                   </Link>
                 </motion.div>
               ))}
@@ -136,8 +183,12 @@ export function Header() {
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { delay: 0.7, duration: 0.5 },
+              }}
+              exit={{ opacity: 0, y: 20 }}
               className="absolute bottom-10 left-1/2 -translate-x-1/2"
             >
               <ThemeToggle />
