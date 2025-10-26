@@ -54,7 +54,15 @@ const ContactPage = () => {
               name="name"
               required
               className="block w-full px-4 py-2 bg-input border-2 border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+              aria-describedby="name-error"
             />
+            {state.errors?.name && (
+              <div id="name-error" aria-live="polite" className="text-destructive text-sm mt-1">
+                {state.errors.name.map((error: string) => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">Email *</label>
@@ -64,7 +72,15 @@ const ContactPage = () => {
               name="email"
               required
               className="block w-full px-4 py-2 bg-input border-2 border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+              aria-describedby="email-error"
             />
+             {state.errors?.email && (
+              <div id="email-error" aria-live="polite" className="text-destructive text-sm mt-1">
+                {state.errors.email.map((error: string) => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="subject" className="block text-sm font-medium text-muted-foreground mb-2">Subject</label>
@@ -73,7 +89,15 @@ const ContactPage = () => {
               id="subject"
               name="subject"
               className="block w-full px-4 py-2 bg-input border-2 border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+              aria-describedby="subject-error"
             />
+             {state.errors?.subject && (
+              <div id="subject-error" aria-live="polite" className="text-destructive text-sm mt-1">
+                {state.errors.subject.map((error: string) => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">Message *</label>
@@ -83,7 +107,15 @@ const ContactPage = () => {
               rows={5}
               required
               className="block w-full px-4 py-2 bg-input border-2 border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+              aria-describedby="message-error"
             ></textarea>
+            {state.errors?.message && (
+              <div id="message-error" aria-live="polite" className="text-destructive text-sm mt-1">
+                {state.errors.message.map((error: string) => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
+            )}
           </div>
           <SubmitButton />
         </form>

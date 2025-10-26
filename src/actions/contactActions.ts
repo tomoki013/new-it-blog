@@ -16,6 +16,12 @@ const contactSchema = z.object({
 export type FormState = {
   message: string;
   success: boolean;
+  errors?: {
+    name?: string[];
+    email?: string[];
+    subject?: string[];
+    message?: string[];
+  };
 };
 
 export async function submitContactForm(
@@ -30,9 +36,16 @@ export async function submitContactForm(
   });
 
   if (!validatedFields.success) {
+    const errorMap = validatedFields.error.flatten().fieldErrors;
     return {
       message: 'Validation failed. Please check your inputs.',
       success: false,
+      errors: {
+        name: errorMap.name,
+        email: errorMap.email,
+        subject: errorMap.subject,
+        message: errorMap.message,
+      },
     };
   }
 
