@@ -451,9 +451,28 @@ html {
       @apply text-glow-primary;
     }
 
-    /* リンクにホバーエフェクト */
+    /* リンクにホバーエフェクト (インライン展開) */
     a {
-      @apply link-hover-effect;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -3px;
+      left: 0;
+      background-color: var(--primary);
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+      box-shadow: var(--box-glow-primary);
+    }
+    a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
     }
 
     /* コードブロックのスタイル */
