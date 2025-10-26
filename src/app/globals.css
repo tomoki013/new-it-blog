@@ -332,6 +332,11 @@
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+
+  /* Mobile menu scroll lock */
+  .body-no-scroll {
+    overflow: hidden;
+  }
 }
 
 /* 7. ライトモード */
