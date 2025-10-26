@@ -16,7 +16,7 @@ const AboutPage = () => {
       <div className="flex flex-col md:flex-row items-center justify-center gap-12">
         <div className="w-48 h-48 md:w-64 md:h-64 relative">
           <Image
-            src="https://tomokichi.netlify.app/_next/image?url=%2Fimages%2Fintroduce.jpg&w=384&q=75"
+            src="/images/introduce.jpg"
             alt="Profile Picture"
             width={256}
             height={256}

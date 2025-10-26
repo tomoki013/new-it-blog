@@ -73,7 +73,7 @@ export const Timeline = () => {
   return (
     <section className="mt-24">
       <h2 className="text-3xl font-bold text-center mb-16 dark:text-glow-secondary animate-neon-pulse">JOURNEY</h2>
-      <div className="relative border-l-2 border-primary/50 ml-6 md:ml-0">
+      <div className="relative border-l-2 border-primary/50 ml-4 md:ml-0">
         {ITJourneys.map((item, index) => (
           <motion.div
             key={index}
@@ -81,7 +81,7 @@ export const Timeline = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="mb-12 pl-12 md:pl-16 relative before:absolute before:left-[-11px] before:top-2 before:w-5 before:h-5 before:bg-primary before:rounded-full before:border-4 before:border-background"
+            className="mb-12 pl-10 md:pl-16 relative before:absolute before:left-[-11px] before:top-2 before:w-5 before:h-5 before:bg-primary before:rounded-full before:border-4 before:border-background"
           >
             <div className="flex items-center gap-4 mb-2">
               <span className={`px-3 py-1 text-xs font-semibold rounded-full ${getCategoryStyle(item.category)}`}>
