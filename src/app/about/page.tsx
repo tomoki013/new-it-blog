@@ -20,7 +20,7 @@ const AboutPage = () => {
             alt="Profile Picture"
             width={256}
             height={256}
-            className="rounded-full border-4 border-primary shadow-glow-primary"
+            className="rounded-full border-4 border-primary shadow-glow-primary object-cover"
           />
         </div>
         <div className="md:w-1/2 text-center md:text-left">
