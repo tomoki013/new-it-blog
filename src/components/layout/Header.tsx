@@ -33,12 +33,12 @@ export function Header() {
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("body-no-scroll");
     } else {
-      document.body.style.overflow = "unset";
+      document.body.classList.remove("body-no-scroll");
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.classList.remove("body-no-scroll");
     };
   }, [isMobileMenuOpen]);
 

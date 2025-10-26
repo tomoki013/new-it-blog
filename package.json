@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/postcss": "^4.1.15",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.21",
