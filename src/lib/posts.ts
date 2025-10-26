@@ -195,3 +195,21 @@ export function getSortedPostsData(): Post[] {
     }
   });
 }
+
+/**
+ * すべての投稿から一意のタグのリストを取得します。
+ */
+export function getAllTags(): string[] {
+  const allPosts = getSortedPostsData();
+  const allTags = allPosts.flatMap((post) => post.tags || []);
+  return [...new Set(allTags)];
+}
+
+/**
+ * すべての投稿から一意のカテゴリのリストを取得します。
+ */
+export function getAllCategories(): string[] {
+  const allPosts = getSortedPostsData();
+  const allCategories = allPosts.flatMap((post) => post.category || []);
+  return [...new Set(allCategories)];
+}
