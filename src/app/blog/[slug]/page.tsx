@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import rehypePrettyCode from "rehype-pretty-code";
+import type { Element } from "hast";
 
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
@@ -40,15 +41,18 @@ export default async function PostPage(props: {
           rehypePrettyCode,
           {
             theme: "synthwave-84",
-            onVisitLine(node) {
+            onVisitLine(node: Element) {
               if (node.children.length === 0) {
                 node.children = [{ type: "text", value: " " }];
               }
             },
-            onVisitHighlightedLine(node) {
-              node.properties.className.push("line--highlighted");
+            onVisitHighlightedLine(node: Element) {
+              if (!node.properties) node.properties = {};
+              if (!node.properties.className) node.properties.className = [];
+              (node.properties.className as string[]).push("line--highlighted");
             },
-            onVisitHighlightedWord(node) {
+            onVisitHighlightedWord(node: Element) {
+              if (!node.properties) node.properties = {};
               node.properties.className = ["word--highlighted"];
             },
           },

@@ -367,6 +367,8 @@
   --box-glow-primary: 0 0 12px oklch(var(--color-primary) / 0.9),
     0 0 25px oklch(var(--color-primary) / 0.7),
     0 0 40px oklch(var(--color-primary) / 0.5);
+  --box-glow-pre: 0 0 8px oklch(var(--color-primary) / 0.5),
+    0 0 15px oklch(var(--color-primary) / 0.3);
   --box-glow-secondary: 0 0 12px oklch(var(--color-secondary) / 0.9),
     0 0 25px oklch(var(--color-secondary) / 0.7),
     0 0 40px oklch(var(--color-secondary) / 0.5);
@@ -456,7 +458,8 @@ html {
 
     /* コードブロックのスタイル */
     pre {
-      @apply border-2 border-primary/30 rounded-lg shadow-glow-primary/[.50];
+      @apply border-2 border-primary/30 rounded-lg;
+      box-shadow: var(--box-glow-pre);
       background-image: repeating-linear-gradient(
         0deg,
         oklch(var(--color-primary) / 0.1),
